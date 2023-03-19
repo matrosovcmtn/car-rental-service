@@ -14,6 +14,7 @@ import ru.matrosov.rentauto.RentAuto.util.EntityNotCreatedException;
 import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 // @ResponseBody аннотация для возврата не представления а просто строки над методом
@@ -28,7 +29,7 @@ public class PeopleController {
         this.peopleService = peopleService;
     }
 
-
+    @GetMapping()
     public List<Person> getPeople() { // Получаем всех людей
         return peopleService.findAll();
     }
