@@ -2,7 +2,6 @@ package ru.matrosov.rentauto.RentAuto.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.matrosov.rentauto.RentAuto.dto.PersonDTO;
 import ru.matrosov.rentauto.RentAuto.models.Person;
 import ru.matrosov.rentauto.RentAuto.repositories.PeopleRepository;
@@ -12,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 @AllArgsConstructor
 public class PeopleService {
 
@@ -25,6 +23,12 @@ public class PeopleService {
                 .tel(personDTO.getTel())
                 .age(personDTO.getAge())
                 .build();
+        person.setRole("ROLE_USER");
+        return peopleRepository.save(person);
+    }
+
+    public Person register(Person person) {
+        person.setRole("ROLE_USER");
         return peopleRepository.save(person);
     }
 
@@ -37,13 +41,14 @@ public class PeopleService {
         return foundPerson.orElseThrow(EntityNotFoundException::new);
     }
 
-
-
-    @Transactional
-    public void save(Person person) {
-        peopleRepository.save(person);
+    // так как человек с таким id уже существует он будет не сохраняться а обновляться
+    public Person update(Person person) {
+        return peopleRepository.save(person);
     }
 
+    public void delete(int id) {
+        peopleRepository.deleteById(id);
+    }
 
 }
 

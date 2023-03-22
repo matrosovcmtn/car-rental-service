@@ -1,16 +1,16 @@
 package ru.matrosov.rentauto.RentAuto.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter // Аннотации для автоматической генерации сеттеров и геттеров
-@NoArgsConstructor // автогенерация конструктора (без арг-ов)
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "car")
 public class Car {
+
     @Id
     @Column(name = "car_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,8 @@ public class Car {
 
     @Column(name = "model_name")
     private String modelName;
-    @Column(name = "license_plate")
-    private String licensePlate;
+    @Column(name = "horse_powers")
+    private int horsePowers;
+    @Column(name = "description")
+    private String description;
 }

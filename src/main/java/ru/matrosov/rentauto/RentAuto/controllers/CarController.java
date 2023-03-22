@@ -2,13 +2,12 @@ package ru.matrosov.rentauto.RentAuto.controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.matrosov.rentauto.RentAuto.models.Car;
+import ru.matrosov.rentauto.RentAuto.models.Person;
 import ru.matrosov.rentauto.RentAuto.services.CarService;
 import ru.matrosov.rentauto.RentAuto.services.CommonService;
 import ru.matrosov.rentauto.RentAuto.util.EntityErrorResponse;
@@ -26,7 +25,7 @@ public class CarController {
     private final CommonService commonService;
 
     @GetMapping()
-    public List<Car> getCars() {
+    public List<Car> readAll() {
         return carService.findAll();
     }
     @GetMapping("/{id}")
@@ -35,16 +34,25 @@ public class CarController {
     }
 
     @PostMapping                        //@RequestBody - Конвертация из JSON в объект класса Car
-    public ResponseEntity<HttpStatus> create(@RequestBody @Valid Car car,
-                                             BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> create(@RequestBody @Valid Car car, BindingResult bindingResult) {
 
         commonService.checkBindingResultForErrors(bindingResult);
+        carService.create(car);
 
-        carService.save(car);
-
-        // Отправляем Http ответ с пустым телом и со статусом 200
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    @PutMapping
+    public ResponseEntity<Car> update(@RequestBody Car car) {
+        return new ResponseEntity<>(carService.update(car), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public HttpStatus delete(@PathVariable("id") int id) {
+        carService.delete(id);
+        return HttpStatus.OK;
+    }
+
 
     @ExceptionHandler
     private ResponseEntity<EntityErrorResponse> handleException(EntityNotFoundException e) {
