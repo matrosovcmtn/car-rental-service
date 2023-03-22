@@ -3,16 +3,13 @@ package ru.matrosov.rentauto.RentAuto.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
-@ToString(includeFieldNames=true)
+@AllArgsConstructor
 @Table(name = "person")
 public class Person {
 

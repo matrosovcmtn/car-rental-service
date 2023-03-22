@@ -1,6 +1,7 @@
 package ru.matrosov.rentauto.RentAuto.controllers;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.matrosov.rentauto.RentAuto.models.Car;
 import ru.matrosov.rentauto.RentAuto.services.CarService;
+import ru.matrosov.rentauto.RentAuto.services.CommonService;
 import ru.matrosov.rentauto.RentAuto.util.EntityErrorResponse;
 import ru.matrosov.rentauto.RentAuto.util.EntityNotCreatedException;
 import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
@@ -16,16 +18,14 @@ import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor // Lombok для упрощения внедрения сервисов
 @RequestMapping("/cars")
 public class CarController {
 
     private final CarService carService;
+    private final CommonService commonService;
 
-    @Autowired
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
-
+    @GetMapping()
     public List<Car> getCars() {
         return carService.findAll();
     }
@@ -37,18 +37,8 @@ public class CarController {
     @PostMapping                        //@RequestBody - Конвертация из JSON в объект класса Car
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid Car car,
                                              BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            StringBuilder errorMsg = new StringBuilder();
 
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error : errors) {
-                errorMsg.append(error.getField())
-                        .append(" - ").append(error.getDefaultMessage())
-                        .append(";");
-            }
-
-            throw new EntityNotCreatedException(errorMsg.toString());
-        }
+        commonService.checkBindingResultForErrors(bindingResult);
 
         carService.save(car);
 
