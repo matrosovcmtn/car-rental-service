@@ -16,6 +16,12 @@ import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
 
 import java.util.List;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ * Класс контроллера авто с внедренными
+*/
+
 @RestController
 @AllArgsConstructor // Lombok для упрощения внедрения сервисов
 @RequestMapping("/cars")

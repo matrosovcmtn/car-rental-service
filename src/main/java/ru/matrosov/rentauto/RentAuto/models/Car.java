@@ -3,6 +3,11 @@ package ru.matrosov.rentauto.RentAuto.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ */
+
 @Data
 @Builder
 @AllArgsConstructor

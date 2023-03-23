@@ -3,13 +3,16 @@ package ru.matrosov.rentauto.RentAuto.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.matrosov.rentauto.RentAuto.models.Car;
-import ru.matrosov.rentauto.RentAuto.models.Person;
 import ru.matrosov.rentauto.RentAuto.repositories.CarRepository;
 import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ */
 @Service
 @AllArgsConstructor
 public class CarService {

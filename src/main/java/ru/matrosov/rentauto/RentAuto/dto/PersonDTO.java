@@ -9,6 +9,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ */
+
 @Data
 public class PersonDTO {
     @NotEmpty(message = "Имя не должно быть пустым")

@@ -10,6 +10,11 @@ import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ */
+
 @Service
 @AllArgsConstructor
 public class PeopleService {

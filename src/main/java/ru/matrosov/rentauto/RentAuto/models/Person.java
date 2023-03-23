@@ -5,6 +5,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ */
+
 @Entity
 @Data
 @Builder

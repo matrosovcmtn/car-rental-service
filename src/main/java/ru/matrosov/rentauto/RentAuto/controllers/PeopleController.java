@@ -16,6 +16,11 @@ import ru.matrosov.rentauto.RentAuto.util.EntityNotFoundException;
 
 import java.util.List;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ * Класс контроллера клиентов с внедренными
+ */
 
 // @ResponseBody аннотация для возврата не представления а просто строки
 @RestController // @Controller + @ResponseBody

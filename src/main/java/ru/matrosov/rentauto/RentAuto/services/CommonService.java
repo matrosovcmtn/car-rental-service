@@ -7,6 +7,11 @@ import ru.matrosov.rentauto.RentAuto.util.EntityNotCreatedException;
 
 import java.util.List;
 
+/**
+ * @author Данил Матросов
+ * @version 1.0
+ */
+
 @Service
 public class CommonService {
     public void checkBindingResultForErrors(BindingResult bindingResult) {
