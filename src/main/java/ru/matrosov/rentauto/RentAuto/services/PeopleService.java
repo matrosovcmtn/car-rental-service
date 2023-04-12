@@ -28,12 +28,10 @@ public class PeopleService {
                 .tel(personDTO.getTel())
                 .age(personDTO.getAge())
                 .build();
-        person.setRole("ROLE_USER");
         return peopleRepository.save(person);
     }
 
     public Person register(Person person) {
-        person.setRole("ROLE_USER");
         return peopleRepository.save(person);
     }
 

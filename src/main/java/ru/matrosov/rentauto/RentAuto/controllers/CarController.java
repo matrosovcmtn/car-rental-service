@@ -25,6 +25,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor // Lombok для упрощения внедрения сервисов
 @RequestMapping("/cars")
+@CrossOrigin(origins="http://localhost:3000")
 public class CarController {
 
     private final CarService carService;

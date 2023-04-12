@@ -26,6 +26,7 @@ import java.util.List;
 @RestController // @Controller + @ResponseBody
 @AllArgsConstructor
 @RequestMapping("/people")
+@CrossOrigin(origins="http://localhost:3000")
 public class PeopleController {
 
     private final PeopleService peopleService;
