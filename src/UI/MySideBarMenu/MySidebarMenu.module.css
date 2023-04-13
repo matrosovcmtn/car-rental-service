@@ -1,0 +1,41 @@
+.sideBarToggler:before {
+    content: "";
+    transform: translateY(-10px);
+    background-color: #333333;
+    width: 40px;
+    height: 5px;
+    position: absolute;
+}
+
+.sideBarToggler {
+    width: 40px;
+    background-color: #333333;
+    height: 5px;
+}
+
+.sideBarToggler:after {
+    content: "";
+    transform: translateY(10px);
+    background-color: #333333;
+    width: 40px;
+    height: 5px;
+    position: absolute;
+}
+
+.sideBarMenu {
+    list-style: none;
+    position: fixed;
+    left: 0;
+    top: 45px;
+    transform: translateX(-100%);
+    padding: 20px;
+    width: 150px;
+    opacity: 0;
+    background-color: white;
+    transition: all 0.25s ease-in-out;
+}
+
+.toggled {
+    transform: translateX(0%);
+    opacity: 1;
+}

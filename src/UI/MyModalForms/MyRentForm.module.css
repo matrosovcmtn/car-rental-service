@@ -1,0 +1,13 @@
+.form {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #333333;
+    width: 100%;
+    padding: 30px 0;
+}
+
+.form * {
+    display: block;
+    margin: 10px auto;
+}

@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 450px;
+    background-color: rgb(48, 45, 78);
+    color: aliceblue;
+    margin: 50px auto;
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+
+.form h1 {
+    width: 100%;
+    text-align: center;
+}
