@@ -22,13 +22,17 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "model_name")
     private String modelName;
 
+    @Column(name = "horse_powers")
     private int horsePowers;
 
     private String description;
 
     private String category;
+
+    private int price;
 
     @JsonIgnore
     @OneToOne(mappedBy = "car")

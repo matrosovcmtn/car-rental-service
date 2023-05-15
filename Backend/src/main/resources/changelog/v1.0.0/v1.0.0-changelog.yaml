@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: changelog/v1.0.0/create-table-person.sql
+  - include:
+      file: changelog/v1.0.0/create-table-car.sql

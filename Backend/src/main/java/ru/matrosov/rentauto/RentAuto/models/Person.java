@@ -40,14 +40,14 @@ public class Person implements UserDetails {
 
     private String tel;
 
-    private LocalDate dateOfBirth; //= LocalDate.of( 1979 , 1 , 10 );
+    private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JsonIgnore
-    @JoinColumn(name = "car_car_id", referencedColumnName = "car_id")
+    @JoinColumn(name = "car_id", referencedColumnName = "car_id")
     private Car car;
 
     @Override

@@ -94,6 +94,14 @@
 			<version>0.2.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.22.0</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
