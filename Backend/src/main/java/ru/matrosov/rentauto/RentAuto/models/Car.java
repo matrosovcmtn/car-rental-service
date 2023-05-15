@@ -18,7 +18,7 @@ import lombok.*;
 public class Car {
 
     @Id
-    @Column(name = "car_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

@@ -47,7 +47,7 @@ public class Person implements UserDetails {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JsonIgnore
-    @JoinColumn(name = "car_id", referencedColumnName = "car_id")
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
     @Override

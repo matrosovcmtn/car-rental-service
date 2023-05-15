@@ -9,6 +9,5 @@ create table car
     description  varchar,
     category     varchar,
     price        int
---     person_id    int references person (id)
 );
 -- rollback drop table car;
