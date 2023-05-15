@@ -1,0 +1,55 @@
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    padding: 50px 20px;
+    box-shadow: 0 0 5px 1px #aaaaaa5d;
+    background-color: white;
+    transition: all 0.25s ease-in-out;
+    font-size: 1.25em;
+}
+
+.card:hover {
+    box-shadow: 0 0 2px 2px #00bb35
+}
+
+.btn {
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border: none;
+    color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    position: relative;
+    text-decoration: none;
+}
+
+.btn::after {
+    content: "Оформить";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 40px;
+    background-color: unset;
+    transition: all 0.35s ease-in-out;
+    opacity: 0;
+    z-index: 1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover::after {
+    background-color: #00bb35;
+    width: 100%;
+    opacity: 1;
+}
