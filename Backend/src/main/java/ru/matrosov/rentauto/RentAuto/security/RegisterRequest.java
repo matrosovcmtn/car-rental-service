@@ -17,5 +17,5 @@ public class RegisterRequest {
   private String email;
   private String tel;
   private String password;
-  private LocalDate birthDate;
+  private LocalDate dateOfBirth;
 }

@@ -19,6 +19,12 @@ public class CarDTO {
 
     private String category;
 
+    private int price;
+
+    private String imageName;
+
+    private boolean isTaken;
+
     private int personId;
 
 }

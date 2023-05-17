@@ -34,10 +34,13 @@ public class Car {
 
     private int price;
 
+    private String imageName;
+
+    private boolean isTaken;
+
     @JsonIgnore
-    @OneToOne(mappedBy = "car")
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
-
-
 
 }

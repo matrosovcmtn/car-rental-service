@@ -19,16 +19,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PersonService {
 
-    private final PersonRepository personRepository; // Внедряем с помощью конструктора (Lombok)
-
-    public Person create(PersonDTO personDTO) {
-        Person person = Person.builder()
-                .name(personDTO.getName())
-                .email(personDTO.getEmail())
-                .tel(personDTO.getTel())
-                .build();
-        return personRepository.save(person);
-    }
+    private final PersonRepository personRepository;
 
     public List<Person> findAll() {
         return personRepository.findAll();
@@ -43,7 +34,6 @@ public class PersonService {
         return personRepository.findByEmail(email).get().getId();
     }
 
-    // так как человек с таким id уже существует он будет не сохраняться а обновляться
     public Person update(Person person) {
         return personRepository.save(person);
     }

@@ -1,6 +1,5 @@
 package ru.matrosov.rentauto.RentAuto.controllers;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
