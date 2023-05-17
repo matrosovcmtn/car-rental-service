@@ -1,14 +1,21 @@
 import React from 'react'
 import { useLocation, withRouter } from "react-router-dom";
-import allCars from '../../localDataBase/cars.json'
 import classes from './CarDetails.module.css'
 import {FaExclamationTriangle} from 'react-icons/fa'
 import MyRentForm from '../../UI/MyModalForms/MyRentForm';
+import axios from 'axios';
 
 const CarDetails = () => {
   const query = new URLSearchParams(useLocation().search);
   const id = query.get('id')
-  const data = allCars[id-1]
+
+  const [carDets, setCarDets] = useState({})
+
+  const get_car_details = async () => {
+    const {data} = await axios.get(`http://localhost:8088/cars/${id}`)
+    setCarDets(data)
+  }
+
   return (
     <div className={classes.dets}>
         <div className={classes.gallery}>

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import MyCarCard from '../../UI/MyCarCardUser/MyCarCard'
 import classes from "./CarsList.module.css"
-import data from '../../localDataBase/cars.json'
 import { useState } from 'react'
 import { BiSearchAlt } from "react-icons/bi"
 import MyCategorySelector from '../../UI/MyCatetgorySelector/MyCategorySelector'
@@ -9,15 +8,23 @@ import { useCarsFilter } from '../../customHooks/useCarsFilter'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCarDetails, setCarDetails } from '../../redux/slices/carDetails'
+import axios from 'axios'
+import Cookies from 'universal-cookie'
 
 const CarsList = () => {
 
   const searchLine = useRef()
 
+  const cookies = new Cookies()
+
   const [filters, setFilters] = useState({
     category: [],
     query: ""
   })
+
+  const [cars, setCars] = useState([])
+
+  const [filtered,setFiltered] = useState([])
 
   const setCats = (value) => {
     if (filters.category.includes(value)) {
@@ -26,9 +33,19 @@ const CarsList = () => {
     else setFilters({...filters, category: [...filters.category, value]})
   }
 
-  const newData = useCarsFilter(filters.category, filters.query, data)
+  const get_cars = async () => {
+    const {data} = await axios.get('http:/localhost:8088/cars', {
+      headers: {
+        "Authorization":"Bearer " + cookies.get("token")
+      }
+    })
+    const filteredData = useCarsFilter(filters.category, filters.query, data)
+    setFiltered(filteredData)
+  }
 
-  const dispatch = useDispatch()
+  useEffect(() => {
+    get_cars()
+  }, [filters])
 
   return (
     <div>
@@ -59,12 +76,15 @@ const CarsList = () => {
         </div>
       </div>
       <div className={classes.list}>
-        {newData.map((car, index) =>
-          <Link key={index} className={classes.link} to={`/cur_car_page?id=${index + 1}`}>
-            <MyCarCard key={index}
-                     model={car.model}
+        {filtered.map((car, index) =>
+          <Link key={index} className={classes.link} to={`/cur_car_page?id=${car.id}`}>
+            <MyCarCard
+                     id={car.id}
+                     model={car.modelName}
+                     horsePowers={car.horsePowers}
+                     description={car.description}
                      category={car.category}
-                     cost={car.cost}/>
+                     cost={car.price}/>
           </Link>)}
       </div>
     </div>

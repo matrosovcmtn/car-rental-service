@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import { selectCarDetails } from '../../redux/slices/carDetails'
 import { useEffect } from 'react'
 
-const MyCarCard = ({model, cost, action}) => {
+const MyCarCard = ({id, model, horsePowers, description, category, cost}) => {
   return (
-    <div className={classes.card} onClick={action}>
+    <div className={classes.card}>
         <img src="./assets/granta.jpg" alt=""
             width="230px"/>
         <hr style={{width:"80%"}}/>

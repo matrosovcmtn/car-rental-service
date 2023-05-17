@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchCars = createAsyncThunk("people/fetchCars", 
+export const fetchCars = createAsyncThunk("cars/fetchCars", 
 async (token) => {
     const {data} = await axios.get("http://localhost:8088/cars", 
     {headers: {
@@ -10,7 +10,7 @@ async (token) => {
     return data
 })
 
-export const fetchAddCar = createAsyncThunk("people/fetchAddCar", 
+export const fetchAddCar = createAsyncThunk("cars/fetchAddCar", 
 async (car, token) => {
     const {data} = await axios.post("http://localhost:8088/cars/register", car, 
     {headers: {
@@ -28,7 +28,7 @@ async (car, token) => {
     return data
 })
 
-export const fetchRemoveCar = createAsyncThunk("people/fetchRemoveCar", 
+export const fetchRemoveCar = createAsyncThunk("cars/fetchRemoveCar", 
 async (id, token) => {
     await axios.delete(`http://localhost:8088/cars/${id}`, 
     {headers: {
