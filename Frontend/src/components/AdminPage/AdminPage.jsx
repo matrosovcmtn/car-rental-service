@@ -18,7 +18,7 @@ const AdminPage = () => {
               event.preventDefault()
               return dispatch(setTypeDBs({typeDB: "none"}))
             }}>
-              <h1>MyAdminPage</h1>
+              <h2>MyAdminPage</h2>
             </Link>
             <MyButton text={"Выйти"} action = {() => {dispatch(logout())}}/>
         </header>

@@ -1,7 +1,7 @@
 .vis {
-    position: absolute;
-    left: 0;
+    position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,12 +35,6 @@
     -moz-box-sizing: border-box;
 }
 
-.vis label[for="age"] input {
-    margin-left: 10px;
-    display: inline-block;
-    width: 14%;
-}
-
 .vis > * {
     display: block;
 }
@@ -59,5 +53,10 @@
 
 .unchWarnHid {
     display: none;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
 }
 

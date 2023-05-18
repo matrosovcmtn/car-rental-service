@@ -15,16 +15,12 @@ const CarsList = () => {
 
   const searchLine = useRef()
 
-  const cookies = new Cookies()
-
   const [filters, setFilters] = useState({
     category: [],
     query: ""
   })
 
-  const [cars, setCars] = useState([])
-
-  const [filtered,setFiltered] = useState([])
+  const [cars,setCars] = useState([])
 
   const setCats = (value) => {
     if (filters.category.includes(value)) {
@@ -34,18 +30,15 @@ const CarsList = () => {
   }
 
   const get_cars = async () => {
-    const {data} = await axios.get('http:/localhost:8088/cars', {
-      headers: {
-        "Authorization":"Bearer " + cookies.get("token")
-      }
-    })
-    const filteredData = useCarsFilter(filters.category, filters.query, data)
-    setFiltered(filteredData)
+    const {data} = await axios.get('http://localhost:8088/cars')
+    setCars(data)
   }
 
   useEffect(() => {
     get_cars()
-  }, [filters])
+  }, [])
+
+  const filtered = useCarsFilter(filters.category, filters.query, cars)
 
   return (
     <div>
@@ -53,7 +46,7 @@ const CarsList = () => {
         <div className={classes.search}>
           <label htmlFor="query">Поиск:</label>
           <div>
-            <input ref={searchLine} name="query"type="text" placeholder='Запрос...'/>
+            <input ref={searchLine} name="query" type="text" placeholder='Запрос...'/>
             <button onClick={() => setFilters({...filters, query: searchLine.current.value})}><BiSearchAlt/></button>
           </div>
         </div>
@@ -76,7 +69,7 @@ const CarsList = () => {
         </div>
       </div>
       <div className={classes.list}>
-        {filtered.map((car, index) =>
+        {filtered.filter(car => !car.taken).map((car, index) =>
           <Link key={index} className={classes.link} to={`/cur_car_page?id=${car.id}`}>
             <MyCarCard
                      id={car.id}
@@ -84,7 +77,9 @@ const CarsList = () => {
                      horsePowers={car.horsePowers}
                      description={car.description}
                      category={car.category}
-                     cost={car.price}/>
+                     cost={car.price}
+                     image={car.imageName}
+                     />
           </Link>)}
       </div>
     </div>

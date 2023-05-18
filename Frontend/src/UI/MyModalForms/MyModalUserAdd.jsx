@@ -10,12 +10,27 @@ const MyModalUserAdd = ({activated, action}) => {
 
     const dispatch = useDispatch()
 
+    
+    // name: 'Хитров Никита Сергеевич',
+    // email: 'hitrov.qazws@gmail.com',
+    // tel: '89915374415',
+    // dateOfBirth: null,
+    // carDTO: {
+        //  category: "Премиум"
+        //  description: "hadsfasdfasdg"
+        //  horsePowers: 300
+        //  id: 1
+        //  imageName: "granta.jpg"
+        //  modelName: "silvia"
+        //  personId: 1
+        //  price : 7000
+        //  taken: false
+    // }
+
     const [uInf, setUInf] = useState({
         name: "",
         email: "",
-        tel: "",
-        username: "",
-        age: ""
+        dateOfBirth: ""
     })
 
     const [empty, setEmpty] = useState(null)
@@ -27,14 +42,6 @@ const MyModalUserAdd = ({activated, action}) => {
     <div className={activated ? classes.vis : classes.hid}>
         <form>
             <h2>Добавить пользователя</h2>
-            <label htmlFor="uname"><span>Username:</span>
-                <input id = "uname" type="text" placeholder="Sentmentl"
-                    value={uInf.username}
-                    onChange ={(event) => setUInf(
-                        {...uInf, username: event.target.value}
-                    )}
-                />
-            </label>
             <label htmlFor="name"><span>Name:</span>
                 <input id = "name" type="text" placeholder="Khitrov Nikita"
                     value={uInf.name}
@@ -59,11 +66,11 @@ const MyModalUserAdd = ({activated, action}) => {
                     )}
                 />
             </label>
-            <label htmlFor="age">Укажите возраст:
-                <input id='age' type="number" min="18" max="90" placeholder="18"
-                    value={uInf.age}
+            <label htmlFor="age">Дата рождения:
+                <input id='age' type="date"
+                    value={uInf.dateOfBirth}
                     onChange ={(event) => setUInf(
-                        {...uInf, age: event.target.value}
+                        {...uInf, dateOfBirth: event.target.value}
                     )}
                 />
             </label>

@@ -6,9 +6,9 @@
     background-color: rgb(48, 45, 78);
 }
 
-.header h1 {
+.header h2 {
     color:aliceblue;
-    padding: 0 20px;
+    margin: 0 20px;
 }
 
 .main {

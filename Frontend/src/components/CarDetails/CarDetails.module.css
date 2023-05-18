@@ -13,6 +13,10 @@
     height: fit-content;
 }
 
+h1, h2, h3 {
+    margin: 10px 0 0 0;
+}
+
 .dets img {
     width: 100%;
 }
@@ -45,10 +49,14 @@
 
 @media (max-width: 60vh) {
     .dets {
-        grid-template-columns:90%;
+        grid-template-columns: 100%;
+        gap: 0;
+        padding: 10px;
+        box-sizing: border-box;
     }
-    .desc ~ * {
-        grid-area: unset;
+    .dets > * {
+        margin: 10px auto;
+        grid-column: 1 / 2;
     }
 }
 

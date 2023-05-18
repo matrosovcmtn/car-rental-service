@@ -22,7 +22,6 @@ const DataBase = () => {
 
   const [filter, setFilter] = useState({sortBy: type === "people" ? "id" : "car_id" , query: ""})
 
-
   const token = useSelector(adminAuthSelector).token
   
   useEffect(() => {
@@ -30,19 +29,23 @@ const DataBase = () => {
     else if (type === "cars") dispatch(fetchCars(token))
   }, [])
   
+  console.log(useSelector(selectCars))
+
   const DBcont = useSearchedSortedData(type === "people" ? useSelector(selectUsers) : useSelector(selectCars), filter.sortBy, filter.query)
 
   return (
     <div>
       {type === "people"
         ? <div>
-            <MyInput
-              value = {filter.query}
-              type = "text"
-              placeholder = "Поиск клиента..."
-              onChange = {(event) => setFilter({...filter, query: event.target.value})}
-            />
-            <div  style={{display: "flex", alignItems: "center", padding: "4px"}}>
+            <div style={{display: "flex", alignItems: "center", padding: "4px"}}>
+              <MyInput
+                value = {filter.query}
+                type = "text"
+                placeholder = "Поиск клиента..."
+                onChange = {(event) => setFilter({...filter, query: event.target.value})}
+              />
+            </div>
+            <div style={{display: "flex", alignItems: "start", padding: "4px"}}>
               <MySelect
                 value = {filter.sortBy}
                 defaultValue = {"Сортировка по"}
@@ -64,31 +67,33 @@ const DataBase = () => {
             {DBcont.map(user => <MyUserCard key = {user.id} user = {user}/>)}
           </div>
         : <div>
-          <MyInput
+          <div style={{display: "flex", alignItems: "center", padding: "4px"}}>
+            <MyInput
               value = {filter.query}
               type = "text"
               placeholder = "Поиск авто..."
               onChange = {(event) => setFilter({...filter, query: event.target.value})}
             />
-            <div  style={{display: "flex", alignItems: "center", padding: "4px"}}>
-              <MySelect
-                value = {filter.sortBy}
-                defaultValue = {"Сортировка по"}
-                options = {[
-                  {value: "model_name", name: "По модели"},
-                  {value: "horse_powers", name: "По мощности"}
-                ]}
-                onChange = {sortType => setFilter({...filter, sortBy: sortType})}
-              />
-              <MyButton
-                text = {"Добавить автомобиль"}
-                action = {() => {
-                  setIsAdding(true)
-                }}
-              />
-            </div>
-            <MyModalCarAdd activated = {isAdding} action = {setIsAdding}/>
-            {DBcont.map(car => <MyCarCard key = {car.car_id} car = {car}/>)}
+          </div>
+          <div  style={{display: "flex", alignItems: "center", padding: "4px"}}>
+            <MySelect
+              value = {filter.sortBy}
+              defaultValue = {"Сортировка по"}
+              options = {[
+                {value: "model_name", name: "По модели"},
+                {value: "horse_powers", name: "По мощности"}
+              ]}
+              onChange = {sortType => setFilter({...filter, sortBy: sortType})}
+            />
+            <MyButton
+              text = {"Добавить автомобиль"}
+              action = {() => {
+                setIsAdding(true)
+              }}
+            />
+          </div>
+          <MyModalCarAdd activated = {isAdding} action = {setIsAdding}/>
+          {DBcont.map(car => <MyCarCard key = {car.car_id} car = {car}/>)}
         </div>
       }
     </div>

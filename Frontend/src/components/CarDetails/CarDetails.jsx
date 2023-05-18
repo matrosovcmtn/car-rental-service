@@ -1,32 +1,57 @@
 import React from 'react'
-import { useLocation, withRouter } from "react-router-dom";
+import { useLocation, useNavigate, withRouter } from "react-router-dom";
 import classes from './CarDetails.module.css'
 import {FaExclamationTriangle} from 'react-icons/fa'
 import MyRentForm from '../../UI/MyModalForms/MyRentForm';
 import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import Cookies from 'universal-cookie'
 
 const CarDetails = () => {
   const query = new URLSearchParams(useLocation().search);
   const id = query.get('id')
 
-  const [carDets, setCarDets] = useState({})
+  const navigate = useNavigate()
+
+  const cookies = new Cookies()
+
+  const [carDets, setCarDets] = useState({
+    "modelName": "",
+    "horsePowers": null,
+    "description": "",
+    "category": "",
+    "personId": null,
+    "price": null,
+    "imageName": ""
+  })
 
   const get_car_details = async () => {
-    const {data} = await axios.get(`http://localhost:8088/cars/${id}`)
-    setCarDets(data)
+    try {
+      const {data} = await axios.get(`http://localhost:8088/cars/${id}`)
+      setCarDets(data)
+    }
+    catch (e) {
+      console.log(e.message)
+      navigate("/")
+    }
   }
+
+  useEffect(() => {
+    get_car_details()
+  }, [])
 
   return (
     <div className={classes.dets}>
         <div className={classes.gallery}>
-          <img src="./assets/granta.jpg" />
+          <img src={"./assets/" + carDets.imageName} />
         </div>
         <div className={classes.desc}>
-          <h1>{data.model}</h1>
-          <p>Класс автомобиля: <i>{data.category}</i></p>
-          <p>Стоимость: <i>{data.cost} руб./сутки</i></p>
+          <h1>{carDets.modelName}</h1>
+          <p>Класс автомобиля: <i>{carDets.category}</i></p>
+          <p>Стоимость: <i>{carDets.price} руб./сутки</i></p>
           <h3>Описание:</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi dolores fugiat rerum optio aliquid omnis consequatur, praesentium, eligendi quos beatae, consequuntur quidem itaque ad doloremque placeat nisi laborum quis numquam.</p>
+          <p>{carDets.description}</p>
         </div>
         <div className={classes.chars}>
           <h3>Характеристики:</h3>

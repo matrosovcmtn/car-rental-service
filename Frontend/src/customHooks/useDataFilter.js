@@ -7,7 +7,7 @@ const chooseSortCallback = (sortBy, a, b) => {
 
 export const useSortedData = (DBcont, sortBy) => {
     const sortedData = useMemo(() => {
-        if (sortBy) {
+        if (sortBy.length > 0) {
             return [...DBcont].sort((a,b) => chooseSortCallback(sortBy, a, b))
         }
         return DBcont
@@ -19,8 +19,14 @@ export const useSearchedSortedData = (DBcont, sortBy, query) => {
     const sortedData = useSortedData(DBcont, sortBy)
 
     const searchedData = useMemo(() => {
-        if (query) {
-            return sortedData.filter((user => user.name.toLowerCase().includes(query.toLowerCase())))
+        if (DBcont.length > 0) {
+            const compField = Object.keys(DBcont[0]).filter(key => key.toLowerCase().includes("name"))[0]
+            if (query.length > 0) {
+                return sortedData.filter(item => item[compField] &&
+                    item[compField].toLowerCase().includes(query.toLowerCase())
+                )
+            }
+            return sortedData.filter(item => item[compField])
         }
         return sortedData
     }, [query, sortedData])

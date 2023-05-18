@@ -23,7 +23,7 @@ const MyFooter = () => {
           <Link className={classes.link}>ул. 11-я парковая, д. 36</Link>
         </div>
         <div className={classes.policy}>
-          <p>2023 &copy; RentAuto - аренда автомобилей.<br/>Идея дизайна была взята с ресурса <a href="https://www.rentcars.ru">RentCars</a> исключительно в образовательных целях.</p>
+          <p>2023 &copy; RentAuto - аренда автомобилей.</p>
         </div>
     </div>
   )

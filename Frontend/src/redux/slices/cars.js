@@ -47,15 +47,15 @@ const carsSlice = createSlice({
     extraReducers: {
         //Получаем автомобили с сервера
         [fetchCars.pending]: (state) => {
-            state.users = []
+            state.cars = []
             state.status = "loading"
         },
         [fetchCars.fulfilled]: (state, action) => {
-            state.users = action.payload.sort((a,b) => a.id - b.id);
+            state.cars = action.payload.sort((a,b) => a.id - b.id);
             state.status = "loaded"
         },
         [fetchCars.rejected]: (state) => {
-            state.users = []
+            state.cars = []
             state.status = "error"
         },
 
@@ -64,12 +64,12 @@ const carsSlice = createSlice({
             state.status = "loading"
         },
         [fetchAddCar.fulfilled]: (state, action) => {
-            state.users = [...state.users, action.payload]
+            state.cars = [...state.users, action.payload]
                 .sort((a,b) => a.id - b.id);
             state.status = "loaded"
         },
         [fetchAddCar.rejected]: (state) => {
-            state.users = []
+            state.cars = []
             state.status = "error"
         },
 
@@ -78,14 +78,14 @@ const carsSlice = createSlice({
             state.status = "loading"
         },
         [fetchEditCar.fulfilled]: (state, action) => {
-            state.users = 
-            [...state.users
-                .filter((user) => user.id !== action.payload.id),
+            state.cars = 
+            [...state.cars
+                .filter((car) => car.id !== action.payload.id),
                     action.payload].sort((a,b) => a.id - b.id)
             state.status = "loaded"
         },
         [fetchEditCar.rejected]: (state) => {
-            state.users = []
+            state.cars = []
             state.status = "error"
         },
 
@@ -94,14 +94,14 @@ const carsSlice = createSlice({
             state.status = "loading"
         },
         [fetchRemoveCar.fulfilled]: (state, action) => {
-            state.users = [...state.users
-                .filter((user) => user.id !== action.meta.arg)]
+            state.cars = [...state.cars
+                .filter((car) => car.id !== action.meta.arg)]
                     .sort((a,b) => a.id - b.id)
             console.log(action)
             state.status = "loaded"
         },
         [fetchRemoveCar.rejected]: (state) => {
-            state.users = []
+            state.cars = []
             state.status = "error"
         }
     }

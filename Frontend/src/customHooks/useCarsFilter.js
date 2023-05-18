@@ -2,13 +2,16 @@ import { useMemo } from "react"
 
 export const useCarsFilter = (cats, query, data) => {
     const cated = useMemo(() => {
-        if (cats.length) {
+        console.log(cats)
+        if (cats.length > 0) {
             return data.filter(car => cats.includes(car.category))
         }
         else return data
-    }, [cats])
+    }, [cats, data])
     const searched = useMemo(() => {
-        return cated.filter(car => car.model.toLowerCase().includes(query.toLowerCase()))
-    }, [cated, query])
+        if (query)
+            return cated.filter(car => car.modelName.toLowerCase().includes(query.toLowerCase()))
+        else return cated
+    }, [cated, query, data])
     return searched
 }

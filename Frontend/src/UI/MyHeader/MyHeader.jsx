@@ -33,7 +33,7 @@ const MyHeader = () => {
               ? <span onClick={() => {
                 cookies.remove("token")
                 setAuthed(false)
-              }}>Выйти</span> 
+              }}><span>Выйти</span></span> 
               : <span><Link to='/log'>Вход</Link><Link to='/reg'>Регистрация</Link></span>
             }
             

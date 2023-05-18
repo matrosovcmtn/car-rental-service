@@ -1,8 +1,14 @@
 [
     {
-        "model": "Lada Granta",
-        "category": "Эконом",
-        "cost": "1300"
+        "id": 1,
+        "modelName": "niva rs6",
+        "horsePowers": 800,
+        "description": "Norm tachka",
+        "category": "sportcar",
+        "personId": 1,
+        "price": 1000,
+        "imageName": "lada.png",
+        "isTaken": "false"
     },
     {
         "model": "Hyundai Solaris",

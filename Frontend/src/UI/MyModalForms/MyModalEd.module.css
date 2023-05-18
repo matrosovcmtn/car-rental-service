@@ -1,7 +1,7 @@
 .vis {
-    position: absolute;
-    left: 0;
+    position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +23,25 @@
     opacity: 1;
 }
 
+.vis form label {
+    width: 60%;
+}
+
+.vis label input{
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+
+.vis label[for="age"] input {
+    margin-left: 10px;
+    display: inline-block;
+    width: 14%;
+}
+
 .vis > * {
     display: block;
 }
@@ -41,4 +60,9 @@
 
 .unchWarnHid {
     display: none;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
 }
