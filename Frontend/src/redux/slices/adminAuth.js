@@ -28,7 +28,6 @@ const adminLoginSlice = createSlice({
             }
         }),
         loginSuccess: (state, action) => {
-            console.log(action.payload)
             return {
                 ...state,
                 authData: {

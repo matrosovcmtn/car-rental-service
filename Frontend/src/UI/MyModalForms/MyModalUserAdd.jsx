@@ -10,27 +10,12 @@ const MyModalUserAdd = ({activated, action}) => {
 
     const dispatch = useDispatch()
 
-    
-    // name: 'Хитров Никита Сергеевич',
-    // email: 'hitrov.qazws@gmail.com',
-    // tel: '89915374415',
-    // dateOfBirth: null,
-    // carDTO: {
-        //  category: "Премиум"
-        //  description: "hadsfasdfasdg"
-        //  horsePowers: 300
-        //  id: 1
-        //  imageName: "granta.jpg"
-        //  modelName: "silvia"
-        //  personId: 1
-        //  price : 7000
-        //  taken: false
-    // }
-
     const [uInf, setUInf] = useState({
-        name: "",
-        email: "",
-        dateOfBirth: ""
+        "name": "",
+        "email": "",
+        "tel": "",
+        "password": "",
+        "birthDate": ""
     })
 
     const [empty, setEmpty] = useState(null)
@@ -66,11 +51,19 @@ const MyModalUserAdd = ({activated, action}) => {
                     )}
                 />
             </label>
+            <label htmlFor="pass"><span>Пароль:</span>
+                <input id = "pass" type="password" placeholder="********"
+                    value={uInf.password}
+                    onChange ={(event) => setUInf(
+                        {...uInf, password: event.target.value}
+                    )}
+                />
+            </label>
             <label htmlFor="age">Дата рождения:
                 <input id='age' type="date"
-                    value={uInf.dateOfBirth}
+                    value={uInf.birthDate}
                     onChange ={(event) => setUInf(
-                        {...uInf, dateOfBirth: event.target.value}
+                        {...uInf, birthDate: event.target.value}
                     )}
                 />
             </label>
@@ -83,17 +76,20 @@ const MyModalUserAdd = ({activated, action}) => {
                     uInf["name"] === "" ||
                     uInf["email"] === "" ||
                     uInf["tel"] === "" ||
-                    uInf["username"] === "" ||
-                    uInf["age"] === ""
-                ) setEmpty(true)
+                    uInf["password"] === "" ||
+                    uInf["date_of_birth"] === ""
+                ) {
+                    setEmpty(true)
+                    console.log(uInf)
+                }
                 else {
-                    dispatch(fetchAddUser(uInf, token))
+                    dispatch(fetchAddUser(uInf))
                     setUInf({
-                        name: "",
-                        email: "",
-                        tel: "",
-                        username: "",
-                        age: ""
+                        "name": "",
+                        "email": "",
+                        "tel": "",
+                        "password": "",
+                        "birthDate": ""
                     })
                     setEmpty(null)
                     action(false)
@@ -101,11 +97,11 @@ const MyModalUserAdd = ({activated, action}) => {
             }}/>
             <MyButton text="Отмена" action={() => {
                 setUInf({
-                    name: "",
-                    email: "",
-                    tel: "",
-                    username: "",
-                    age: ""
+                    "name": "",
+                    "email": "",
+                    "tel": "",
+                    "password": "",
+                    "birthDate": ""
                 })
                 setEmpty(null)
                 action(false)

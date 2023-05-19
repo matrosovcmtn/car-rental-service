@@ -1,8 +1,12 @@
 import { useMemo } from "react"
 
 const chooseSortCallback = (sortBy, a, b) => {
-    if (sortBy === "id") return a.id - b.id
-    else return a[sortBy].localeCompare(b[sortBy])
+    if (!a[sortBy]) return false
+    if (!b[sortBy]) return true
+    console.log(a[sortBy])
+    console.log(b[sortBy])    
+    if (typeof a[sortBy] === "number") return a[sortBy] - b[sortBy]
+    else return a[sortBy].toLowerCase().localeCompare(b[sortBy].toLowerCase())
 }
 
 export const useSortedData = (DBcont, sortBy) => {

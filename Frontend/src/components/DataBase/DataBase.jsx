@@ -20,16 +20,12 @@ const DataBase = () => {
   
   const [isAdding, setIsAdding] = useState(false)
 
-  const [filter, setFilter] = useState({sortBy: type === "people" ? "id" : "car_id" , query: ""})
-
-  const token = useSelector(adminAuthSelector).token
+  const [filter, setFilter] = useState({sortBy: type === "people" ? "name" : "id" , query: ""})
   
   useEffect(() => {
-    if (type === "people") dispatch(fetchUsers(token))
-    else if (type === "cars") dispatch(fetchCars(token))
+    if (type === "people") dispatch(fetchUsers()) 
+    else if (type === "cars") dispatch(fetchCars())
   }, [])
-  
-  console.log(useSelector(selectCars))
 
   const DBcont = useSearchedSortedData(type === "people" ? useSelector(selectUsers) : useSelector(selectCars), filter.sortBy, filter.query)
 
@@ -80,8 +76,10 @@ const DataBase = () => {
               value = {filter.sortBy}
               defaultValue = {"Сортировка по"}
               options = {[
-                {value: "model_name", name: "По модели"},
-                {value: "horse_powers", name: "По мощности"}
+                {value: "modelName", name: "По модели"},
+                {value: "horsePowers", name: "По мощности"},
+                {value: "category", name: "По категории"},
+                {value: "price", name: "По цене"}
               ]}
               onChange = {sortType => setFilter({...filter, sortBy: sortType})}
             />

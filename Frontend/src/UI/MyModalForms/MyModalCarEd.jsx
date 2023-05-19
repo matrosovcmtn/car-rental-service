@@ -23,18 +23,13 @@ const MyModalCarEd = ({activated, action, car}) => {
     // "imageName": "lada.png" \/
 
   const [cInf, setCInf] = useState({
-    model_name: car.modelName,
-    horse_powers: car.horse_powers, 
     description: car.description,
-    category: car.category,
     personId: car.personId,
     price: car.price,
     imageName: car.imageName
     })
 
   const token = useSelector(adminAuthSelector).token
-
-
 
   return (
     <div className={activated ? classes.vis : classes.hid}>

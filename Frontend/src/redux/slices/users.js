@@ -1,26 +1,29 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from 'universal-cookie'
+
+const cookies = new Cookies()
+
+const token = cookies.get("token")
 
 export const fetchUsers = createAsyncThunk("people/fetchUsers", 
-async (token) => {
+async () => {
     const {data} = await axios.get("http://localhost:8088/people",
     {headers: {
         "Authorization" : `Bearer ${token}`
     }});
+    console.log(data)
     return data
 })
 
 export const fetchAddUser = createAsyncThunk("people/fetchAddUsers", 
-async (user, token) => {
-    const {data} = await axios.post("http://localhost:8088/people/register", user, 
-    {headers: {
-        "Authorization" : `Bearer ${token}`
-    }});
-    return data
+async (user) => {
+    const {data} = await axios.post("http://localhost:8088/register", user);
+    return user
 })
 
-export const fetchEditUser = createAsyncThunk("people/fetchEditUser", 
-async (user, token) => {
+export const fetchEditUser = createAsyncThunk("people/fetchEditUser",
+async (user) => {
     const {data} = await axios.put("http://localhost:8088/people", user, 
     {headers: {
         "Authorization" : `Bearer ${token}`
@@ -29,7 +32,7 @@ async (user, token) => {
 })
 
 export const fetchRemoveUser = createAsyncThunk("people/fetchRemoveUser", 
-async (id, token) => {
+async (id) => {
     await axios.delete(`http://localhost:8088/people/${id}`, 
     {headers: {
         "Authorization" : `Bearer ${token}`
@@ -96,8 +99,8 @@ const usersSlice = createSlice({
         },
         [fetchRemoveUser.fulfilled]: (state, action) => {
             state.users = [...state.users
-                .filter((user) => user.id !== action.meta.arg)]
-                    .sort((a,b) => a.id - b.id)
+                .filter((user) => user.carDTO.id !== action.payload)]
+                    .sort((a,b) => a.carDTO.id - b.carDTO.id)
             console.log(action)
             state.status = "loaded"
         },

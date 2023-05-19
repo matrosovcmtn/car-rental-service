@@ -1,8 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from 'universal-cookie'
+
+const cookies = new Cookies()
+
+const token = cookies.get("token")
 
 export const fetchCars = createAsyncThunk("cars/fetchCars", 
-async (token) => {
+async () => {
     const {data} = await axios.get("http://localhost:8088/cars", 
     {headers: {
         "Authorization" : `Bearer ${token}`
@@ -11,16 +16,17 @@ async (token) => {
 })
 
 export const fetchAddCar = createAsyncThunk("cars/fetchAddCar", 
-async (car, token) => {
-    const {data} = await axios.post("http://localhost:8088/cars/register", car, 
+async (car) => {
+    console.log(token)
+    const {data} = await axios.post("http://localhost:8088/cars", car, 
     {headers: {
         "Authorization" : `Bearer ${token}`
     }});
     return data
 })
 
-export const fetchEditCar = createAsyncThunk("cars/fetchEditCar", 
-async (car, token) => {
+export const fetchEditCar = createAsyncThunk("cars/fetchEditCar",
+async (car) => {
     const {data} = await axios.put("http://localhost:8088/cars", car, 
     {headers: {
         "Authorization" : `Bearer ${token}`
@@ -29,7 +35,7 @@ async (car, token) => {
 })
 
 export const fetchRemoveCar = createAsyncThunk("cars/fetchRemoveCar", 
-async (id, token) => {
+async (id) => {
     await axios.delete(`http://localhost:8088/cars/${id}`, 
     {headers: {
         "Authorization" : `Bearer ${token}`
@@ -64,7 +70,7 @@ const carsSlice = createSlice({
             state.status = "loading"
         },
         [fetchAddCar.fulfilled]: (state, action) => {
-            state.cars = [...state.users, action.payload]
+            state.cars = [...state.cars, action.payload]
                 .sort((a,b) => a.id - b.id);
             state.status = "loaded"
         },

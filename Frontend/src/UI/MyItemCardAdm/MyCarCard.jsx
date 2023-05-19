@@ -43,7 +43,7 @@ const MyCarCard = ({car}) => {
             />
             <MyButton
                 text = {"Удалить"}
-                action = {() => {dispatch(fetchRemoveCar(car.car_id, token))}}
+                action = {() => {dispatch(fetchRemoveCar(car.id))}}
             />
         </div>
   )

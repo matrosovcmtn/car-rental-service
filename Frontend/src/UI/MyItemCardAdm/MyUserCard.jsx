@@ -14,23 +14,6 @@ const MyUserCard = ({user}) => {
 
     const token = useSelector(adminAuthSelector).token
 
-    console.log(user)
-
-    // name: 'Хитров Никита Сергеевич',
-    // email: 'hitrov.qazws@gmail.com',
-    // tel: '89915374415',
-    // dateOfBirth: null,
-    // carDTO: {
-        //  category: "Премиум"
-        //  description: "hadsfasdfasdg"
-        //  horsePowers: 300
-        //  id: 1
-        //  imageName: "granta.jpg"
-        //  modelName: "silvia"
-        //  personId: 1
-        //  price : 7000
-        //  taken: false
-    // }
     return (
         <div className={classes.card}>
             <h1>{user.name}</h1>
@@ -66,7 +49,7 @@ const MyUserCard = ({user}) => {
             />
             <MyButton
                 text = {"Удалить"}
-                action = {() => {dispatch(fetchRemoveUser(user.id, token))}}
+                action = {() => {dispatch(fetchRemoveUser(user.carDTO.personId))}}
             />
         </div>
   )

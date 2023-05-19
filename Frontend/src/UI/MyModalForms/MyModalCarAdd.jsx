@@ -11,8 +11,8 @@ const MyModalUserAdd = ({activated, action}) => {
     const dispatch = useDispatch()
 
     const [cInf, setCInf] = useState({
-        model_name: "",
-        horse_powers: 0, 
+        modelName: "",
+        horsePowers: 0,
         description: "",
         category: "",
         personId: 1,
@@ -30,9 +30,9 @@ const MyModalUserAdd = ({activated, action}) => {
             <h2>Добавить автомобиль</h2>
             <label>Модель автомобиля:
             <input type="text"
-                value = {cInf.model_name}
+                value = {cInf.modelName}
                 onChange = {(event) => setCInf(
-                    {...cInf, model_name: event.target.value}
+                    {...cInf, modelName: event.target.value}
                 )}
             /></label>
             <label>Класс:
@@ -44,9 +44,9 @@ const MyModalUserAdd = ({activated, action}) => {
             /></label>
             <label>Мощность:
             <input type="number"
-                value = {cInf.horse_powers}
+                value = {cInf.horsePowers}
                 onChange = {(event) => setCInf(
-                    {...cInf, horse_powers: event.target.value}
+                    {...cInf, horsePowers: event.target.value}
                 )}
             /></label>
             <label>Описание:
@@ -68,16 +68,16 @@ const MyModalUserAdd = ({activated, action}) => {
                 <span>Введите все необходимые данные!</span>
             </div>
             <MyButton text="Добавить" action={() => {
-                if (cInf.model_name === "" ||
-                    cInf.horse_powers === 0 ||
+                if (cInf.modelName === "" ||
+                    cInf.horsePowers === 0 ||
                     cInf.description === "" ||
                     cInf.category === "" ||
                     cInf.price === 0) setEmpty(true)
                 else {
-                    dispatch(fetchAddCar(cInf, token))
+                    dispatch(fetchAddCar((cInf)))
                     setCInf({
-                        model_name: "",
-                        horse_powers: 0, 
+                        modelName: "",
+                        horsePowers: 0, 
                         description: "",
                         category: "",
                         personId: 1,
@@ -90,8 +90,8 @@ const MyModalUserAdd = ({activated, action}) => {
             }}/>
             <MyButton text="Отмена" action={() => {
                 setCInf({
-                    model_name: "",
-                    horse_powers: 0, 
+                    modelName: "",
+                    horsePowers: 0, 
                     description: "",
                     category: "",
                     personId: 1,
