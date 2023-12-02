@@ -4,11 +4,10 @@ import MyNavBar from '../../UI/MyNavBar/MyNavBar'
 import MySlider from '../../UI/MySlider/MySlider'
 import MyFooter from '../../UI/MyFooter/MyFooter'
 import CarsList from '../../components/CarsList/CarsList'
-import classes from './MainPage.module.css'
 
 const MainPage = () => {
   return (
-    <div className={classes.main}>
+    <div>
         <MyHeader/>
         <MySlider/>
         <MyNavBar/>

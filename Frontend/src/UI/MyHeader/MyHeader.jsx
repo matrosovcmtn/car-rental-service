@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import MySidebarMenu from '../MySideBarMenu/MySidebarMenu'
 import classes from './MyHeader.module.css'
 import { FaUserAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
